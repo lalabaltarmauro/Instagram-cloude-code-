@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "omniroute": {
+      "command": "bash",
+      "args": [".claude/hooks/omniroute-mcp.sh"]
+    }
+  }
+}
