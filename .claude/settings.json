@@ -22,5 +22,21 @@
         ]
       }
     ]
+  },
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "ToolSearch",
+      "mcp__Claude_Browser__find",
+      "mcp__Claude_Browser__get_page_text",
+      "mcp__Claude_Browser__tabs_context",
+      "mcp__Claude_Browser__read_console_messages",
+      "mcp__claude-in-chrome__tabs_context_mcp",
+      "mcp__claude-in-chrome__list_connected_browsers",
+      "mcp__claude-in-chrome__find",
+      "mcp__terminal__read_terminal",
+      "mcp__5cde6ffd-66c9-47c0-a391-3df64f373769__perplexity_search",
+      "mcp__0cfcc660-9e42-4c8d-9d8e-6b4abcee64b4__vidiq_social_account_list"
+    ]
   }
 }
