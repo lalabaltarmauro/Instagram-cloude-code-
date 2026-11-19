@@ -1,0 +1,80 @@
+{
+  ".claude/settings.json": {
+    "mtime": 1794702065.505048,
+    "seen": 1795105422.3567066,
+    "ast_hash": "3b541b9935fcf0831355da956f897645",
+    "semantic_hash": ""
+  },
+  "bot/fetch_data.py": {
+    "mtime": 1795105238.0804954,
+    "seen": 1795105422.356713,
+    "ast_hash": "77fcd2eef3be8862a10e5c956289148a",
+    "semantic_hash": ""
+  },
+  "bot/plot_results.py": {
+    "mtime": 1795105421.0641286,
+    "seen": 1795105422.3567157,
+    "ast_hash": "0f61fcdf997df31895c9236b5980fd0b",
+    "semantic_hash": ""
+  },
+  "bot/run_backtest.py": {
+    "mtime": 1795105246.1724958,
+    "seen": 1795105422.3567176,
+    "ast_hash": "1c5dc12b66e364a749ad978b19f79fe6",
+    "semantic_hash": ""
+  },
+  "bot/sr_strategy.py": {
+    "mtime": 1795105227.2684948,
+    "seen": 1795105422.3567188,
+    "ast_hash": "71146cd02e02aa5b2dc021f1811ad908",
+    "semantic_hash": ""
+  },
+  "results/summary.json": {
+    "mtime": 1795105301.5549843,
+    "seen": 1795105422.3567204,
+    "ast_hash": "9cfd70c09dd7eca38498a574573f77de",
+    "semantic_hash": ""
+  },
+  ".claude/CLAUDE.md": {
+    "mtime": 1794702065.5045002,
+    "seen": 1795105422.3567214,
+    "ast_hash": "9b31786b637be3c13978bec4c2330752",
+    "semantic_hash": ""
+  },
+  ".claude/skills/caveman/README.md": {
+    "mtime": 1794702065.5050833,
+    "seen": 1795105422.3567224,
+    "ast_hash": "c6565f2f610ce9f2bab13b09009d8c2b",
+    "semantic_hash": ""
+  },
+  ".claude/skills/caveman/SKILL.md": {
+    "mtime": 1794702065.5051353,
+    "seen": 1795105422.3567238,
+    "ast_hash": "56b2f9db32197569a4a53b69bd8e859d",
+    "semantic_hash": ""
+  },
+  "CLAUDE.md": {
+    "mtime": 1794702065.5058584,
+    "seen": 1795105422.3567245,
+    "ast_hash": "67d88e9d0760c3ba54c75dfd9551c1c5",
+    "semantic_hash": ""
+  },
+  "README.md": {
+    "mtime": 1795105421.0661433,
+    "seen": 1795105422.3567255,
+    "ast_hash": "c541b96bca7b104b3bcd8d31cd056140",
+    "semantic_hash": ""
+  },
+  "requirements.txt": {
+    "mtime": 1795105421.0641286,
+    "seen": 1795105422.3567266,
+    "ast_hash": "36abc282f52cb45a2f2bf3cdc8f39c10",
+    "semantic_hash": ""
+  },
+  "results/equity.png": {
+    "mtime": 1795105404.4645054,
+    "seen": 1795105422.3567276,
+    "ast_hash": "68bf7b3467be608d97404c611b2c4f16",
+    "semantic_hash": ""
+  }
+}
