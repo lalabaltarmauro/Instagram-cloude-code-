@@ -36,7 +36,20 @@
       "mcp__claude-in-chrome__find",
       "mcp__terminal__read_terminal",
       "mcp__5cde6ffd-66c9-47c0-a391-3df64f373769__perplexity_search",
-      "mcp__0cfcc660-9e42-4c8d-9d8e-6b4abcee64b4__vidiq_social_account_list"
+      "mcp__0cfcc660-9e42-4c8d-9d8e-6b4abcee64b4__vidiq_social_account_list",
+      "Bash(python produccion/build_video.py *)",
+      "Bash(git pull origin claude/contenido-astronomia)",
+      "Bash(git add contenido produccion/specs *)",
+      "Bash(git add contenido *)",
+      "Bash(git commit -m *)",
+      "Bash(git push origin claude/contenido-astronomia)",
+      "Bash(curl -s https://images-api.nasa.gov/*)",
+      "Bash(ffmpeg -version)",
+      "Edit(contenido/**)",
+      "Write(contenido/**)",
+      "Edit(produccion/**)",
+      "Write(produccion/**)",
+      "SendUserFile"
     ]
   }
 }

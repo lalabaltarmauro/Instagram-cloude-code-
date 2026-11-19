@@ -128,6 +128,7 @@ def build(spec_path):
     run(["ffmpeg", "-y", "-f", "concat", "-safe", "0", "-i", "lista.txt", "-c:v", "libx264", "-preset", "medium",
          "-crf", "20", "-c:a", "aac", "-movflags", "+faststart", str(final)], cwd=work)
     total = duration(final)
+    run(["ffmpeg","-y","-loglevel","error","-ss","1.2","-i",str(final),"-frames:v","1",str(OUT / f"{vid}-portada.png")])
     # hoja de contactos
     sheet = Image.new("RGB", (216 * len(thumbs), 384))
     for k, t in enumerate(thumbs):
