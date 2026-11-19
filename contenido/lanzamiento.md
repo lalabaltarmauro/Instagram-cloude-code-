@@ -6,7 +6,7 @@ Recomendado: **Universo en 1 Minuto** — dice qué es y cuánto dura.
 
 Alternativas: Física de Bolsillo · Curiosidad Cósmica · El Cosmos Explicado
 
-Usuario sugerido (mismo en las dos redes): `@universoen1minuto` — si está tomado: `@universo.en1minuto`, `@universoen1min`.
+Usuario sugerido (mismo en las dos redes): `@fisicacosmica` — si está tomado: `@fisicacosmica`, `@universoen1min`.
 
 ## Instagram
 
@@ -17,7 +17,7 @@ Usuario sugerido (mismo en las dos redes): `@universoen1minuto` — si está tom
 
    > 🌌 El universo explicado en 1 minuto
    > 🪐 Astronomía y física sin fórmulas
-   > 🔭 Un dato nuevo cada semana
+   > 🔭 Hallazgos y curiosidades cada semana
    > 👇 Mirá los videos completos en YouTube
 
 5. Foto de perfil: un planeta o galaxia simple con buen contraste (se ve chiquita). Se puede hacer gratis en Canva.
@@ -26,7 +26,7 @@ Usuario sugerido (mismo en las dos redes): `@universoen1minuto` — si está tom
 ## YouTube
 
 1. Con tu cuenta de Google: youtube.com → tu foto → "Crear un canal" → elegí **usar un nombre personalizado** (así el canal queda separado de tu nombre).
-2. Nombre: Universo en 1 Minuto · Identificador: `@universoen1minuto`
+2. Nombre: Universo en 1 Minuto · Identificador: `@fisicacosmica`
 3. Descripción:
 
    > Astronomía y física explicadas en menos de un minuto, sin fórmulas.
