@@ -4,6 +4,8 @@
 - 01 La Tierra gira (evergreen)
 - 02 Cielo azul (evergreen)
 - 03 Sol como pelota de fútbol (evergreen)
+- 04 Posible planeta enano 2026 ED138 (hallazgo, sem. 18-nov-2026)
+- 05 ¿Y si desapareciera la Luna? (curiosidad)
 
 ## Candidatos de hallazgos (semana del 18-nov-2026) — sin verificar a fondo
 - Posible planeta enano más allá de Plutón, 2026 ED138 (ScienceDaily, 14 nov) — "potencialmente"; verificar si está confirmado

@@ -1,0 +1,50 @@
+{
+ "id": "video-03-sol-pelota-futbol",
+ "titulo": "El Sol como pelota de fútbol",
+ "voz": "es-ES-AlvaroNeural",
+ "velocidad": "+8%",
+ "escenas": [
+  {
+   "voz": "Si el Sol fuera una pelota de fútbol, la Tierra sería un granito a veinticuatro metros.",
+   "texto": "Sol = pelota de fútbol",
+   "imagen": {
+    "nasa_id": "GSFC_20171208_Archive_e001936"
+   }
+  },
+  {
+   "voz": "La pelota mide unos veintidós centímetros. A esa escala, la Tierra mide apenas dos milímetros: como la cabeza de un alfiler.",
+   "texto": "Tierra ≈ 2 mm",
+   "imagen": {
+    "nasa_id": "GSFC_20171208_Archive_e001386"
+   }
+  },
+  {
+   "voz": "Y está a unos veinticuatro metros de la pelota. Entre las dos, solo vacío.",
+   "texto": "24 m de vacío",
+   "imagen": {
+    "nasa_id": "GSFC_20171208_Archive_e002131"
+   }
+  },
+  {
+   "voz": "Neptuno, el último planeta, estaría a unos setecientos metros: casi siete cuadras.",
+   "texto": "Neptuno ≈ 700 m",
+   "imagen": {
+    "nasa_id": "PIA02210"
+   }
+  },
+  {
+   "voz": "Y la estrella más cercana, Próxima Centauri, estaría a más de seis mil kilómetros. ¡Otra pelota, en otro continente!",
+   "texto": "Próxima Centauri ≈ 6.300 km",
+   "imagen": {
+    "nasa_id": "GSFC_20171208_Archive_e000214"
+   }
+  },
+  {
+   "voz": "Así de vacío es el universo. Y vos, parado en ese granito de dos milímetros. ¿Sabías esto? Seguinos.",
+   "texto": "@fisicacosmica",
+   "imagen": {
+    "nasa_id": "carina_nebula"
+   }
+  }
+ ]
+}

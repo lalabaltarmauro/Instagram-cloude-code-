@@ -1,0 +1,50 @@
+{
+ "id": "video-05-sin-luna",
+ "titulo": "¿Y si desapareciera la Luna?",
+ "voz": "es-ES-AlvaroNeural",
+ "velocidad": "+8%",
+ "escenas": [
+  {
+   "voz": "¿Qué pasaría si mañana la Luna desapareciera?",
+   "texto": "¿Sin Luna?",
+   "imagen": {
+    "nasa_id": "KSC-20170809-PH_KLS02_0009"
+   }
+  },
+  {
+   "voz": "Primero, las mareas se achicarían a menos de la mitad. El Sol también las provoca, pero con menos fuerza que la Luna.",
+   "texto": "Mareas: menos de la mitad",
+   "imagen": {
+    "nasa_id": "GSFC_20171208_Archive_e002131"
+   }
+  },
+  {
+   "voz": "Las noches serían bastante más oscuras: la Luna llena es la mayor fuente de luz natural nocturna.",
+   "texto": "Noches más oscuras",
+   "imagen": {
+    "nasa_id": "GSFC_20171208_Archive_e001637"
+   }
+  },
+  {
+   "voz": "Hoy la Luna frena un poco la rotación y alarga el día unos dos milisegundos por siglo. Sin ella, ese frenado se detendría.",
+   "texto": "+2 ms por siglo",
+   "imagen": {
+    "nasa_id": "GSFC_20171208_Archive_e001386"
+   }
+  },
+  {
+   "voz": "Y algo clave: la Luna ayuda a mantener estable la inclinación de la Tierra, de unos veintitrés grados y medio. Sin ella, podría variar mucho más, y cambiarían las estaciones, pero muy lentamente.",
+   "texto": "Inclinación 23,5°",
+   "imagen": {
+    "nasa_id": "iss034e048455"
+   }
+  },
+  {
+   "voz": "¿Sabías esto? Seguinos para entender el universo en un minuto.",
+   "texto": "@fisicacosmica",
+   "imagen": {
+    "nasa_id": "carina_nebula"
+   }
+  }
+ ]
+}

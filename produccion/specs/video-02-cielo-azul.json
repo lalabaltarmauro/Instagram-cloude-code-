@@ -1,0 +1,57 @@
+{
+ "id": "video-02-cielo-azul",
+ "titulo": "¿Por qué el cielo es azul?",
+ "voz": "es-ES-AlvaroNeural",
+ "velocidad": "+12%",
+ "escenas": [
+  {
+   "voz": "El cielo no es azul. La luz del Sol es blanca… y el cielo igual se ve azul.",
+   "texto": "¿Por qué es azul?",
+   "imagen": {
+    "nasa_id": "iss031e123071"
+   }
+  },
+  {
+   "voz": "La luz del Sol mezcla todos los colores. Cada color es una onda de distinto tamaño: la azul es más corta, la roja es más larga.",
+   "texto": "Azul: onda corta\nRojo: onda larga",
+   "imagen": {
+    "nasa_id": "GSFC_20171208_Archive_e001936"
+   }
+  },
+  {
+   "voz": "Cuando esa luz entra en la atmósfera, choca con las moléculas del aire. Las ondas cortas rebotan mucho más: el azul se dispersa unas cuatro veces más que el rojo, y te llega desde todo el cielo.",
+   "texto": "Azul ≈ 4× más dispersado",
+   "imagen": {
+    "nasa_id": "iss023e057948"
+   }
+  },
+  {
+   "voz": "Al atardecer, la luz del Sol atraviesa mucha más atmósfera. En ese camino largo, el azul se pierde hacia los costados, y lo que llega directo son los naranjas y los rojos.",
+   "texto": "Atardecer rojo",
+   "imagen": {
+    "nasa_id": "iss027e012224"
+   }
+  },
+  {
+   "voz": "En otros mundos cambia todo: en la Luna, sin atmósfera, el cielo es negro aunque sea de día.",
+   "texto": "Luna: cielo negro",
+   "imagen": {
+    "query": "Apollo 17 lunar surface astronaut black sky"
+   }
+  },
+  {
+   "voz": "Y en Marte, el atardecer se ve azulado. Así que la próxima vez que veas un atardecer rojo, ya sabés: es el azul que se quedó en el camino.",
+   "texto": "Marte: atardecer azul",
+   "imagen": {
+    "query": "Curiosity Mars sunset blue"
+   }
+  },
+  {
+   "voz": "¿Sabías esto? Seguinos para entender el universo en un minuto.",
+   "texto": "@fisicacosmica",
+   "imagen": {
+    "nasa_id": "carina_nebula"
+   }
+  }
+ ]
+}

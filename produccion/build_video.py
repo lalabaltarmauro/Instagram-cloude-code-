@@ -25,35 +25,55 @@ def run(cmd, **kw):
     return r.stdout
 
 
+def _bajar(nid, dest):
+    for size in ("large", "medium", "orig", "small"):
+        try:
+            urllib.request.urlretrieve(f"https://images-assets.nasa.gov/image/{nid}/{nid}~{size}.jpg", dest)
+            if dest.stat().st_size > 20000:
+                return True
+        except Exception:
+            continue
+    dest.unlink(missing_ok=True)
+    return False
+
+
 def nasa_image(spec):
     """Devuelve ruta a una imagen NASA (por nasa_id o por búsqueda). Cachea."""
     CACHE.mkdir(exist_ok=True)
     nid = spec.get("nasa_id")
-    if not nid:
-        q = urllib.parse.quote(spec["query"])
-        url = f"https://images-api.nasa.gov/search?q={q}&media_type=image&page_size=5"
-        with urllib.request.urlopen(url, timeout=60) as r:
-            items = json.load(r)["collection"]["items"]
-        if not items:
-            raise RuntimeError(f"Sin resultados NASA para: {spec['query']}")
-        nid = items[int(spec.get("pick", 0))]["data"][0]["nasa_id"]
-    dest = CACHE / f"{nid}.jpg"
-    if not dest.exists():
-        for size in ("large", "medium", "orig"):
-            try:
-                u = f"https://images-assets.nasa.gov/image/{nid}/{nid}~{size}.jpg"
-                urllib.request.urlretrieve(u, dest)
-                break
-            except Exception:
-                continue
-        else:
+    if nid:
+        dest = CACHE / f"{nid}.jpg"
+        if not dest.exists() and not _bajar(nid, dest):
             raise RuntimeError(f"No pude bajar {nid}")
-    return dest
+        return dest
+    q = urllib.parse.quote(spec["query"])
+    with urllib.request.urlopen(f"https://images-api.nasa.gov/search?q={q}&media_type=image&page_size=10", timeout=60) as r:
+        items = json.load(r)["collection"]["items"]
+    for it in items[int(spec.get("pick", 0)):]:
+        nid = it["data"][0]["nasa_id"]
+        dest = CACHE / f"{nid}.jpg"
+        if dest.exists() or _bajar(nid, dest):
+            print("  imagen por búsqueda:", spec["query"], "->", nid)
+            return dest
+    raise RuntimeError(f"Sin imagen NASA descargable para: {spec['query']}")
+
+
+def _recortar_bordes(im):
+    """Quita franjas blancas/negras de crédito en el borde inferior."""
+    g = im.convert("L"); w, h = g.size
+    cut = 0
+    while cut < h * 0.08:
+        row = g.crop((0, h - cut - 1, w, h - cut)).resize((1, 1)).getpixel((0, 0))
+        if row > 232:
+            cut += 1
+        else:
+            break
+    return im.crop((0, 0, w, h - cut - 2)) if cut else im
 
 
 def prep_background(img_path, focus_x, focus_y, out_png):
     """Recorte 9:16 'cover' con foco, algo más grande que la pantalla (para zoom)."""
-    im = Image.open(img_path).convert("RGB")
+    im = _recortar_bordes(Image.open(img_path).convert("RGB"))
     tw, th = int(W * 1.25), int(H * 1.25)
     scale = max(tw / im.width, th / im.height)
     im = im.resize((int(im.width * scale) + 1, int(im.height * scale) + 1), Image.LANCZOS)
@@ -129,6 +149,21 @@ def build(spec_path):
          "-crf", "20", "-c:a", "aac", "-movflags", "+faststart", str(final)], cwd=work)
     total = duration(final)
     run(["ffmpeg","-y","-loglevel","error","-ss","1.2","-i",str(final),"-frames:v","1",str(OUT / f"{vid}-portada.png")])
+    # historia de Instagram (imagen vertical con título)
+    try:
+        from PIL import ImageDraw, ImageFont
+        base = Image.open(OUT / f"{vid}-portada.png").convert("RGB").resize((W, H))
+        base = Image.blend(base, Image.new("RGB", (W, H), (0, 0, 0)), 0.45)
+        dr = ImageDraw.Draw(base)
+        f1 = ImageFont.truetype(str(FONT_SRC), 96); f2 = ImageFont.truetype(str(FONT_SRC), 52)
+        y = 640
+        for ln in textwrap.wrap(spec.get("titulo", vid), 16):
+            w = dr.textlength(ln, font=f1); dr.text(((W - w) / 2, y), ln, font=f1, fill=(255, 211, 77), stroke_width=6, stroke_fill=(0, 0, 0)); y += 120
+        for txt, yy in (("NUEVO VIDEO", 420), ("@fisicacosmica", 1560)):
+            w = dr.textlength(txt, font=f2); dr.text(((W - w) / 2, yy), txt, font=f2, fill=(255, 255, 255), stroke_width=4, stroke_fill=(0, 0, 0))
+        base.save(OUT / f"{vid}-historia.png")
+    except Exception as e:
+        print("historia no generada:", e)
     # hoja de contactos
     sheet = Image.new("RGB", (216 * len(thumbs), 384))
     for k, t in enumerate(thumbs):

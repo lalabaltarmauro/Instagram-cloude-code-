@@ -1,0 +1,58 @@
+{
+ "id": "video-04-planeta-enano-2026-ED138",
+ "titulo": "Posible nuevo planeta enano",
+ "voz": "es-ES-AlvaroNeural",
+ "velocidad": "+8%",
+ "escenas": [
+  {
+   "voz": "Acaban de encontrar un posible planeta enano… más lejos que Neptuno.",
+   "texto": "¿Nuevo planeta enano?",
+   "imagen": {
+    "nasa_id": "PIA17307"
+   }
+  },
+  {
+   "voz": "Se llama 2026 ED138 y lo detectó el observatorio Vera Rubin, en Chile, con la cámara digital más grande del mundo.",
+   "texto": "2026 ED138",
+   "imagen": {
+    "nasa_id": "carina_nebula"
+   }
+  },
+  {
+   "voz": "Está a unas cuarenta y seis veces la distancia entre la Tierra y el Sol: casi siete mil millones de kilómetros. Neptuno está a treinta.",
+   "texto": "46 UA\n≈ 6.900 millones km",
+   "imagen": {
+    "nasa_id": "PIA02210"
+   }
+  },
+  {
+   "voz": "Mediría entre seiscientos y mil quinientos kilómetros. Plutón mide unos dos mil cuatrocientos.",
+   "texto": "600–1.500 km",
+   "imagen": {
+    "nasa_id": "PIA19717",
+    "foco_x": 0.2
+   }
+  },
+  {
+   "voz": "¿Cómo se escondió tanto tiempo? Está cerca del plano de la Vía Láctea, donde hay tantas estrellas que se perdía entre ellas.",
+   "texto": "Escondido entre estrellas",
+   "imagen": {
+    "nasa_id": "PIA12348"
+   }
+  },
+  {
+   "voz": "Pero por ahora es solo un candidato: falta medirlo en infrarrojo. Si se confirma, sería el sexto planeta enano conocido.",
+   "texto": "Candidato a 6.º planeta enano",
+   "imagen": {
+    "nasa_id": "PIA21906"
+   }
+  },
+  {
+   "voz": "¿Sabías esto? Seguinos para entender el universo en un minuto.",
+   "texto": "@fisicacosmica",
+   "imagen": {
+    "nasa_id": "carina_nebula"
+   }
+  }
+ ]
+}
