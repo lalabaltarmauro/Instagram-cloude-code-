@@ -65,7 +65,13 @@ def prep_background(img_path, focus_x, focus_y, out_png):
 
 async def tts(text, voice, rate, out_mp3):
     import edge_tts
-    await edge_tts.Communicate(text, voice, rate=rate).save(str(out_mp3))
+    for intento in range(5):  # el servicio a veces no devuelve audio: reintentar
+        try:
+            await edge_tts.Communicate(text, voice, rate=rate).save(str(out_mp3))
+            return
+        except edge_tts.exceptions.NoAudioReceived:
+            await asyncio.sleep(2 * (intento + 1))
+    raise RuntimeError(f"Sin audio TTS tras 5 intentos: {text[:50]}")
 
 
 def duration(path):

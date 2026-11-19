@@ -1,7 +1,7 @@
 {
  "id": "video-01-la-tierra-gira",
- "voz": "es-AR-ElenaNeural",
- "velocidad": "+10%",
+ "voz": "es-ES-AlvaroNeural",
+ "velocidad": "+8%",
  "escenas": [
   {
    "voz": "Ahora mismo estás girando a más de 1.600 kilómetros por hora… y no lo sentís.",
