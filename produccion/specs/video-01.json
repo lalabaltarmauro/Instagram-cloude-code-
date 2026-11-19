@@ -1,0 +1,63 @@
+{
+ "id": "video-01-la-tierra-gira",
+ "voz": "es-AR-ElenaNeural",
+ "velocidad": "+10%",
+ "escenas": [
+  {
+   "voz": "Ahora mismo estás girando a más de 1.600 kilómetros por hora… y no lo sentís.",
+   "texto": "1.670 km/h",
+   "imagen": {
+    "nasa_id": "GSFC_20171208_Archive_e001386",
+    "foco_x": 0.5
+   }
+  },
+  {
+   "voz": "En el ecuador, a unos 1.670 kilómetros por hora. En Buenos Aires, a unos 1.370: más rápido que un avión.",
+   "texto": "Ecuador 1.670\nBuenos Aires 1.370",
+   "imagen": {
+    "nasa_id": "GSFC_20171208_Archive_e002131",
+    "foco_x": 0.5
+   }
+  },
+  {
+   "voz": "¿Por qué no salimos volando? Porque no sentimos la velocidad, sino los cambios de velocidad. En un avión también podés tomar agua tranquilo.",
+   "texto": "No sentís la velocidad",
+   "imagen": {
+    "nasa_id": "EC04-0047-004",
+    "foco_x": 0.5
+   }
+  },
+  {
+   "voz": "Todo gira con vos: el suelo, tu casa, hasta el aire. Por eso no hay viento en contra.",
+   "texto": "Todo gira con vos",
+   "imagen": {
+    "nasa_id": "iss034e048455",
+    "foco_x": 0.5
+   }
+  },
+  {
+   "voz": "El efecto del giro existe, pero es diminuto: unas 300 veces más débil que la gravedad. Por eso pesás apenas un poquito menos en el ecuador.",
+   "texto": "≈ 0,3 % menos",
+   "imagen": {
+    "nasa_id": "GSFC_20171208_Archive_e001386",
+    "foco_x": 0.3
+   }
+  },
+  {
+   "voz": "Además, la Tierra viaja alrededor del Sol a unos 107.000 kilómetros por hora, y el sistema solar se mueve por la galaxia a cientos de miles.",
+   "texto": "107.000 km/h",
+   "imagen": {
+    "nasa_id": "PIA25628",
+    "foco_x": 0.5
+   }
+  },
+  {
+   "voz": "Todo eso, ahora mismo. ¿Sabías esto? Seguinos para entender el universo en un minuto.",
+   "texto": "@fisicacosmica",
+   "imagen": {
+    "nasa_id": "PIA17996",
+    "foco_x": 0.5
+   }
+  }
+ ]
+}
