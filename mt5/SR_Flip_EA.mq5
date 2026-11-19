@@ -11,12 +11,26 @@
 //|     the new side and is a candle in the trade direction.         |
 //|  5. Stop beyond the zone + InpSlATR * ATR, target InpRR * risk,  |
 //|     InpRiskPct of equity per trade, one position at a time.      |
+//| Optional rules from the video (bot/mtf.py):                      |
+//|  - InpLevelTF: take levels from a higher timeframe (D1 levels    |
+//|    for H4 entries, W1 for D1). Zone = InpZoneHTFATR * HTF ATR.   |
+//|    PERIOD_CURRENT = levels from the chart timeframe (original).  |
+//|  - InpTrendMode: only trade with the trend of InpTrendTF:        |
+//|    EMA = close above/below InpEMALen EMA; STRUCTURE = last two   |
+//|    swing highs and lows both rising (longs) or falling (shorts). |
 //| Runs once per new bar, on the chart timeframe (tested on H4).    |
 //+------------------------------------------------------------------+
-#property version   "1.00"
+#property version   "1.10"
 #property description "Horizontal S/R flip-and-retest EA"
 
 #include <Trade\Trade.mqh>
+
+enum ENUM_TREND_MODE
+  {
+   TREND_NONE      = 0,   // None (both directions)
+   TREND_EMA       = 1,   // Close vs EMA
+   TREND_STRUCTURE = 2    // Market structure (HH/HL, LH/LL)
+  };
 
 input int    InpPivotLen    = 5;      // Pivot bars on each side
 input int    InpLookback    = 300;    // Bars of pivots used for levels
@@ -27,11 +41,26 @@ input double InpSlATR       = 1.0;    // Stop beyond zone (ATR multiples)
 input double InpRR          = 2.0;    // Reward:risk
 input double InpRiskPct     = 1.0;    // Risk per trade (% of equity)
 input int    InpATRLen      = 14;     // ATR period
+input ENUM_TIMEFRAMES InpLevelTF = PERIOD_D1;   // Level timeframe (CURRENT = chart)
+input int    InpHTFPivotLen = 5;      // HTF pivot bars on each side
+input int    InpHTFLookback = 250;    // HTF bars of pivots used for levels
+input double InpZoneHTFATR  = 0.25;   // HTF zone half-width (HTF ATR multiples)
+input ENUM_TREND_MODE InpTrendMode = TREND_EMA; // Trend filter
+input ENUM_TIMEFRAMES InpTrendTF   = PERIOD_D1; // Trend timeframe
+input int    InpEMALen      = 200;    // Trend EMA period
 input ulong  InpMagic       = 260519; // Magic number
 
 CTrade   trade;
-int      atrHandle = INVALID_HANDLE;
-datetime lastBar   = 0;
+int      atrHandle    = INVALID_HANDLE;
+int      htfAtrHandle = INVALID_HANDLE;
+int      emaHandle    = INVALID_HANDLE;
+datetime lastBar      = 0;
+
+//+------------------------------------------------------------------+
+bool UseHTFLevels()
+  {
+   return(InpLevelTF != PERIOD_CURRENT && InpLevelTF != _Period);
+  }
 
 //+------------------------------------------------------------------+
 int OnInit()
@@ -41,6 +70,24 @@ int OnInit()
      {
       Print("iATR failed: ", GetLastError());
       return(INIT_FAILED);
+     }
+   if(UseHTFLevels())
+     {
+      htfAtrHandle = iATR(_Symbol, InpLevelTF, 14);
+      if(htfAtrHandle == INVALID_HANDLE)
+        {
+         Print("HTF iATR failed: ", GetLastError());
+         return(INIT_FAILED);
+        }
+     }
+   if(InpTrendMode == TREND_EMA)
+     {
+      emaHandle = iMA(_Symbol, InpTrendTF, InpEMALen, 0, MODE_EMA, PRICE_CLOSE);
+      if(emaHandle == INVALID_HANDLE)
+        {
+         Print("iMA failed: ", GetLastError());
+         return(INIT_FAILED);
+        }
      }
    trade.SetExpertMagicNumber(InpMagic);
    trade.SetTypeFillingBySymbol(_Symbol);
@@ -52,6 +99,109 @@ void OnDeinit(const int reason)
   {
    if(atrHandle != INVALID_HANDLE)
       IndicatorRelease(atrHandle);
+   if(htfAtrHandle != INVALID_HANDLE)
+      IndicatorRelease(htfAtrHandle);
+   if(emaHandle != INVALID_HANDLE)
+      IndicatorRelease(emaHandle);
+  }
+
+//+------------------------------------------------------------------+
+//| Pivot prices of rates r (oldest first) whose pivot bar p lies in |
+//| [from, last - k] and is confirmed by bar `last`.                 |
+//+------------------------------------------------------------------+
+int CollectPivots(const MqlRates &r[], const int from, const int last, const int k, double &piv[])
+  {
+   ArrayResize(piv, 0);
+   int np = 0;
+   for(int p = MathMax(from, k); p <= last - k; p++)
+     {
+      bool isH = true, isL = true;
+      for(int q = p - k; q <= p + k; q++)
+        {
+         if(r[q].high > r[p].high)
+            isH = false;
+         if(r[q].low < r[p].low)
+            isL = false;
+        }
+      if(isH)
+        {
+         ArrayResize(piv, np + 1);
+         piv[np++] = r[p].high;
+        }
+      if(isL)
+        {
+         ArrayResize(piv, np + 1);
+         piv[np++] = r[p].low;
+        }
+     }
+   return(np);
+  }
+
+//+------------------------------------------------------------------+
+//| Trend filter: allowLong / allowShort from closed InpTrendTF bars |
+//+------------------------------------------------------------------+
+bool TrendAllows(bool &allowLong, bool &allowShort)
+  {
+   allowLong = true;
+   allowShort = true;
+   if(InpTrendMode == TREND_NONE)
+      return(true);
+
+   if(InpTrendMode == TREND_EMA)
+     {
+      double e[];
+      if(CopyBuffer(emaHandle, 0, 1, 1, e) != 1)
+         return(false);
+      double c = iClose(_Symbol, InpTrendTF, 1);
+      if(c == 0)
+         return(false);
+      allowLong = (c > e[0]);
+      allowShort = !allowLong;
+      return(true);
+     }
+
+// TREND_STRUCTURE: last two confirmed swing highs and lows
+   int k = InpPivotLen;
+   MqlRates tr[];
+   ArraySetAsSeries(tr, false);
+   int got = CopyRates(_Symbol, InpTrendTF, 1, 300, tr);
+   if(got < 4 * k + 2)
+      return(false);
+   int last = got - 1;
+   double h1 = 0, h0 = 0, l1 = 0, l0 = 0;
+   int nh = 0, nl = 0;
+   for(int p = last - k; p >= k && (nh < 2 || nl < 2); p--)
+     {
+      bool isH = true, isL = true;
+      for(int q = p - k; q <= p + k; q++)
+        {
+         if(tr[q].high > tr[p].high)
+            isH = false;
+         if(tr[q].low < tr[p].low)
+            isL = false;
+        }
+      if(isH && nh < 2)
+        {
+         if(nh == 0)
+            h1 = tr[p].high;
+         else
+            h0 = tr[p].high;
+         nh++;
+        }
+      if(isL && nl < 2)
+        {
+         if(nl == 0)
+            l1 = tr[p].low;
+         else
+            l0 = tr[p].low;
+         nl++;
+        }
+     }
+   if(nh < 2 || nl < 2)
+      return(false);
+   allowLong  = (h1 > h0 && l1 > l0);
+   allowShort = (h1 < h0 && l1 < l0);
+   return(true);
   }
 
 //+------------------------------------------------------------------+
@@ -190,38 +340,44 @@ void OnTick()
    int i = got - 1;              // last closed bar
    int k = InpPivotLen;
 
-// Pivots confirmed by bar i, inside the lookback
+// Trend filter
+   bool allowLong, allowShort;
+   if(!TrendAllows(allowLong, allowShort))
+      return;
+   if(!allowLong && !allowShort)
+      return;
+
    double piv[];
-   int np = 0;
-   int from = MathMax(i - InpLookback, k);
-   for(int p = from; p <= i - k; p++)
+   double z;
+   if(UseHTFLevels())
      {
-      bool isH = true, isL = true;
-      for(int q = p - k; q <= p + k; q++)
-        {
-         if(r[q].high > r[p].high)
-            isH = false;
-         if(r[q].low < r[p].low)
-            isL = false;
-        }
-      if(isH)
-        {
-         ArrayResize(piv, np + 1);
-         piv[np++] = r[p].high;
-        }
-      if(isL)
-        {
-         ArrayResize(piv, np + 1);
-         piv[np++] = r[p].low;
-        }
+      // Levels from closed bars of the higher timeframe
+      int hk = InpHTFPivotLen;
+      MqlRates hr[];
+      ArraySetAsSeries(hr, false);
+      int hneed = InpHTFLookback + hk + 1;
+      int hgot = CopyRates(_Symbol, InpLevelTF, 1, hneed, hr);
+      if(hgot < 2 * hk + 2)
+         return;
+      double ha[];
+      if(CopyBuffer(htfAtrHandle, 0, 1, 1, ha) != 1 || ha[0] <= 0)
+         return;
+      int j = hgot - 1;
+      CollectPivots(hr, j - InpHTFLookback, j, hk, piv);
+      z = InpZoneHTFATR * ha[0];
+     }
+   else
+     {
+      // Pivots of the chart timeframe confirmed by bar i, inside the lookback
+      CollectPivots(r, i - InpLookback, i, k, piv);
+      z = InpZoneATR * atr;
      }
 
-   double z = InpZoneATR * atr;
    double levels[];
    if(BuildLevels(piv, 2 * z, levels) == 0)
       return;
 
-// Closest level within 3 zones that gives a signal
+// Closest level within 3 zones that gives an allowed signal
    int    side = 0;
    double lv   = 0;
    double bestDist = DBL_MAX;
@@ -231,7 +387,7 @@ void OnTick()
       if(d > 3 * z || d >= bestDist)
          continue;
       int s = FindSignal(i, r, levels[m], z);
-      if(s != 0)
+      if((s == 1 && allowLong) || (s == -1 && allowShort))
         {
          side = s;
          lv = levels[m];

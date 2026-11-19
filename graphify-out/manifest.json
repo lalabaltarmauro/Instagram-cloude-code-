@@ -24,9 +24,9 @@
     "semantic_hash": ""
   },
   "bot/sr_strategy.py": {
-    "mtime": 1795105227.2684948,
-    "seen": 1795105422.3567188,
-    "ast_hash": "71146cd02e02aa5b2dc021f1811ad908",
+    "mtime": 1795105916.6145117,
+    "seen": 1795106058.9208584,
+    "ast_hash": "c85434faf8b8a7bce99da6a773c2451c",
     "semantic_hash": ""
   },
   "results/summary.json": {
@@ -60,9 +60,9 @@
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1795105613.783621,
-    "seen": 1795105614.627979,
-    "ast_hash": "a17e0cc2256e03984d09e2c3b566fa15",
+    "mtime": 1795106058.031902,
+    "seen": 1795106058.9208696,
+    "ast_hash": "8701ddf6d298449a73ece2d976fe0e14",
     "semantic_hash": ""
   },
   "requirements.txt": {
@@ -78,9 +78,27 @@
     "semantic_hash": ""
   },
   "prompt_agente_trading.md": {
-    "mtime": 1795105607.6587455,
-    "seen": 1795105614.6279802,
-    "ast_hash": "1833f5fdcd6ef58186cf28ad530b78a8",
+    "mtime": 1795106058.0089066,
+    "seen": 1795106058.920871,
+    "ast_hash": "b023ca161a4375de991f6ef12942c4f7",
+    "semantic_hash": ""
+  },
+  "bot/mtf.py": {
+    "mtime": 1795105932.3885367,
+    "seen": 1795106058.9208496,
+    "ast_hash": "8f5db6a16121b096d20df96f94c7fdf8",
+    "semantic_hash": ""
+  },
+  "bot/run_trend_backtest.py": {
+    "mtime": 1795105954.601296,
+    "seen": 1795106058.9208565,
+    "ast_hash": "22b5bc1540704992e6b92c5b5b4a060a",
+    "semantic_hash": ""
+  },
+  "results/trend/summary.json": {
+    "mtime": 1795105970.660053,
+    "seen": 1795106058.9208617,
+    "ast_hash": "2229390c051778b0455bf0a2dd50ac53",
     "semantic_hash": ""
   }
 }

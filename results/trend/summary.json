@@ -1,0 +1,460 @@
+{
+  "H4 entries / D1 levels": {
+    "pooled": {
+      "base": {
+        "all": {
+          "trades": 1021,
+          "win_rate_%": 33.5,
+          "avg_R": -0.014,
+          "total_R": -13.9,
+          "profit_factor": 0.98
+        },
+        "first_60%": {
+          "trades": 601,
+          "win_rate_%": 34.4,
+          "avg_R": 0.016,
+          "total_R": 9.9,
+          "profit_factor": 1.02
+        },
+        "last_40%": {
+          "trades": 420,
+          "win_rate_%": 32.1,
+          "avg_R": -0.056,
+          "total_R": -23.7,
+          "profit_factor": 0.92
+        }
+      },
+      "trend": {
+        "all": {
+          "trades": 863,
+          "win_rate_%": 32.9,
+          "avg_R": -0.03,
+          "total_R": -26.2,
+          "profit_factor": 0.96
+        },
+        "first_60%": {
+          "trades": 522,
+          "win_rate_%": 32.0,
+          "avg_R": -0.055,
+          "total_R": -28.6,
+          "profit_factor": 0.92
+        },
+        "last_40%": {
+          "trades": 341,
+          "win_rate_%": 34.3,
+          "avg_R": 0.007,
+          "total_R": 2.4,
+          "profit_factor": 1.01
+        }
+      },
+      "htf": {
+        "all": {
+          "trades": 644,
+          "win_rate_%": 32.6,
+          "avg_R": -0.041,
+          "total_R": -26.7,
+          "profit_factor": 0.94
+        },
+        "first_60%": {
+          "trades": 350,
+          "win_rate_%": 32.3,
+          "avg_R": -0.05,
+          "total_R": -17.4,
+          "profit_factor": 0.93
+        },
+        "last_40%": {
+          "trades": 294,
+          "win_rate_%": 33.0,
+          "avg_R": -0.032,
+          "total_R": -9.3,
+          "profit_factor": 0.95
+        }
+      },
+      "htf+trend": {
+        "all": {
+          "trades": 511,
+          "win_rate_%": 30.9,
+          "avg_R": -0.089,
+          "total_R": -45.7,
+          "profit_factor": 0.87
+        },
+        "first_60%": {
+          "trades": 278,
+          "win_rate_%": 30.6,
+          "avg_R": -0.097,
+          "total_R": -27.0,
+          "profit_factor": 0.86
+        },
+        "last_40%": {
+          "trades": 233,
+          "win_rate_%": 31.3,
+          "avg_R": -0.08,
+          "total_R": -18.7,
+          "profit_factor": 0.89
+        }
+      },
+      "htf+struct": {
+        "all": {
+          "trades": 355,
+          "win_rate_%": 35.2,
+          "avg_R": 0.04,
+          "total_R": 14.3,
+          "profit_factor": 1.06
+        },
+        "first_60%": {
+          "trades": 180,
+          "win_rate_%": 39.4,
+          "avg_R": 0.17,
+          "total_R": 30.6,
+          "profit_factor": 1.28
+        },
+        "last_40%": {
+          "trades": 175,
+          "win_rate_%": 30.9,
+          "avg_R": -0.093,
+          "total_R": -16.3,
+          "profit_factor": 0.87
+        }
+      }
+    },
+    "per_pair_htf+trend": {
+      "EURUSD": {
+        "trades": 62,
+        "longs": 41,
+        "shorts": 21,
+        "win_rate_%": 30.6,
+        "avg_R": -0.1,
+        "profit_factor": 0.84,
+        "net_return_%": -6.6,
+        "cagr_%": -2.6,
+        "max_drawdown_%": -10.9,
+        "years": 2.6
+      },
+      "GBPUSD": {
+        "trades": 75,
+        "longs": 50,
+        "shorts": 25,
+        "win_rate_%": 30.7,
+        "avg_R": -0.098,
+        "profit_factor": 0.85,
+        "net_return_%": -7.7,
+        "cagr_%": -3.0,
+        "max_drawdown_%": -14.2,
+        "years": 2.6
+      },
+      "USDJPY": {
+        "trades": 49,
+        "longs": 29,
+        "shorts": 20,
+        "win_rate_%": 28.6,
+        "avg_R": -0.155,
+        "profit_factor": 0.78,
+        "net_return_%": -7.7,
+        "cagr_%": -3.0,
+        "max_drawdown_%": -12.1,
+        "years": 2.6
+      },
+      "AUDUSD": {
+        "trades": 66,
+        "longs": 38,
+        "shorts": 28,
+        "win_rate_%": 31.8,
+        "avg_R": -0.058,
+        "profit_factor": 0.9,
+        "net_return_%": -4.4,
+        "cagr_%": -1.7,
+        "max_drawdown_%": -10.3,
+        "years": 2.6
+      },
+      "USDCAD": {
+        "trades": 49,
+        "longs": 26,
+        "shorts": 23,
+        "win_rate_%": 30.6,
+        "avg_R": -0.114,
+        "profit_factor": 0.83,
+        "net_return_%": -5.9,
+        "cagr_%": -2.3,
+        "max_drawdown_%": -14.4,
+        "years": 2.6
+      },
+      "USDCHF": {
+        "trades": 47,
+        "longs": 17,
+        "shorts": 30,
+        "win_rate_%": 42.6,
+        "avg_R": 0.263,
+        "profit_factor": 1.44,
+        "net_return_%": 12.5,
+        "cagr_%": 4.6,
+        "max_drawdown_%": -5.0,
+        "years": 2.6
+      },
+      "NZDUSD": {
+        "trades": 71,
+        "longs": 31,
+        "shorts": 40,
+        "win_rate_%": 23.9,
+        "avg_R": -0.295,
+        "profit_factor": 0.6,
+        "net_return_%": -19.4,
+        "cagr_%": -7.9,
+        "max_drawdown_%": -21.6,
+        "years": 2.6
+      },
+      "EURJPY": {
+        "trades": 50,
+        "longs": 26,
+        "shorts": 24,
+        "win_rate_%": 34.0,
+        "avg_R": 0.003,
+        "profit_factor": 0.99,
+        "net_return_%": -0.3,
+        "cagr_%": -0.1,
+        "max_drawdown_%": -13.8,
+        "years": 2.6
+      },
+      "GBPJPY": {
+        "trades": 42,
+        "longs": 28,
+        "shorts": 14,
+        "win_rate_%": 28.6,
+        "avg_R": -0.159,
+        "profit_factor": 0.77,
+        "net_return_%": -6.8,
+        "cagr_%": -2.7,
+        "max_drawdown_%": -10.7,
+        "years": 2.6
+      }
+    }
+  },
+  "D1 entries / W1 levels": {
+    "pooled": {
+      "base": {
+        "all": {
+          "trades": 1042,
+          "win_rate_%": 32.0,
+          "avg_R": -0.053,
+          "total_R": -55.4,
+          "profit_factor": 0.92
+        },
+        "first_60%": {
+          "trades": 692,
+          "win_rate_%": 32.4,
+          "avg_R": -0.041,
+          "total_R": -28.7,
+          "profit_factor": 0.94
+        },
+        "last_40%": {
+          "trades": 350,
+          "win_rate_%": 31.1,
+          "avg_R": -0.076,
+          "total_R": -26.7,
+          "profit_factor": 0.89
+        }
+      },
+      "trend": {
+        "all": {
+          "trades": 892,
+          "win_rate_%": 32.2,
+          "avg_R": -0.05,
+          "total_R": -44.3,
+          "profit_factor": 0.93
+        },
+        "first_60%": {
+          "trades": 577,
+          "win_rate_%": 34.1,
+          "avg_R": 0.007,
+          "total_R": 4.1,
+          "profit_factor": 1.01
+        },
+        "last_40%": {
+          "trades": 315,
+          "win_rate_%": 28.6,
+          "avg_R": -0.153,
+          "total_R": -48.3,
+          "profit_factor": 0.79
+        }
+      },
+      "htf": {
+        "all": {
+          "trades": 711,
+          "win_rate_%": 32.2,
+          "avg_R": -0.052,
+          "total_R": -37.2,
+          "profit_factor": 0.93
+        },
+        "first_60%": {
+          "trades": 409,
+          "win_rate_%": 32.5,
+          "avg_R": -0.042,
+          "total_R": -17.3,
+          "profit_factor": 0.94
+        },
+        "last_40%": {
+          "trades": 302,
+          "win_rate_%": 31.8,
+          "avg_R": -0.066,
+          "total_R": -19.8,
+          "profit_factor": 0.91
+        }
+      },
+      "htf+trend": {
+        "all": {
+          "trades": 586,
+          "win_rate_%": 33.3,
+          "avg_R": -0.018,
+          "total_R": -10.8,
+          "profit_factor": 0.97
+        },
+        "first_60%": {
+          "trades": 334,
+          "win_rate_%": 34.1,
+          "avg_R": 0.001,
+          "total_R": 0.3,
+          "profit_factor": 1.0
+        },
+        "last_40%": {
+          "trades": 252,
+          "win_rate_%": 32.1,
+          "avg_R": -0.044,
+          "total_R": -11.1,
+          "profit_factor": 0.94
+        }
+      },
+      "htf+struct": {
+        "all": {
+          "trades": 472,
+          "win_rate_%": 32.4,
+          "avg_R": -0.037,
+          "total_R": -17.5,
+          "profit_factor": 0.95
+        },
+        "first_60%": {
+          "trades": 267,
+          "win_rate_%": 34.8,
+          "avg_R": 0.038,
+          "total_R": 10.3,
+          "profit_factor": 1.06
+        },
+        "last_40%": {
+          "trades": 205,
+          "win_rate_%": 29.3,
+          "avg_R": -0.136,
+          "total_R": -27.8,
+          "profit_factor": 0.81
+        }
+      }
+    },
+    "per_pair_htf+trend": {
+      "EURUSD": {
+        "trades": 52,
+        "longs": 27,
+        "shorts": 25,
+        "win_rate_%": 28.8,
+        "avg_R": -0.196,
+        "profit_factor": 0.73,
+        "net_return_%": -10.2,
+        "cagr_%": -0.5,
+        "max_drawdown_%": -11.0,
+        "years": 21.7
+      },
+      "GBPUSD": {
+        "trades": 68,
+        "longs": 36,
+        "shorts": 32,
+        "win_rate_%": 35.3,
+        "avg_R": 0.059,
+        "profit_factor": 1.07,
+        "net_return_%": 3.4,
+        "cagr_%": 0.2,
+        "max_drawdown_%": -7.8,
+        "years": 21.7
+      },
+      "USDJPY": {
+        "trades": 65,
+        "longs": 29,
+        "shorts": 36,
+        "win_rate_%": 36.9,
+        "avg_R": 0.043,
+        "profit_factor": 1.04,
+        "net_return_%": 2.1,
+        "cagr_%": 0.1,
+        "max_drawdown_%": -8.1,
+        "years": 21.7
+      },
+      "AUDUSD": {
+        "trades": 57,
+        "longs": 26,
+        "shorts": 31,
+        "win_rate_%": 35.1,
+        "avg_R": 0.062,
+        "profit_factor": 1.08,
+        "net_return_%": 3.0,
+        "cagr_%": 0.2,
+        "max_drawdown_%": -6.0,
+        "years": 19.3
+      },
+      "USDCAD": {
+        "trades": 70,
+        "longs": 41,
+        "shorts": 29,
+        "win_rate_%": 32.9,
+        "avg_R": -0.023,
+        "profit_factor": 0.95,
+        "net_return_%": -2.3,
+        "cagr_%": -0.1,
+        "max_drawdown_%": -8.4,
+        "years": 21.7
+      },
+      "USDCHF": {
+        "trades": 82,
+        "longs": 42,
+        "shorts": 40,
+        "win_rate_%": 29.3,
+        "avg_R": -0.136,
+        "profit_factor": 0.8,
+        "net_return_%": -11.2,
+        "cagr_%": -0.5,
+        "max_drawdown_%": -18.8,
+        "years": 21.7
+      },
+      "NZDUSD": {
+        "trades": 67,
+        "longs": 29,
+        "shorts": 38,
+        "win_rate_%": 34.3,
+        "avg_R": 0.033,
+        "profit_factor": 1.03,
+        "net_return_%": 1.5,
+        "cagr_%": 0.1,
+        "max_drawdown_%": -9.8,
+        "years": 21.2
+      },
+      "EURJPY": {
+        "trades": 66,
+        "longs": 36,
+        "shorts": 30,
+        "win_rate_%": 34.8,
+        "avg_R": 0.022,
+        "profit_factor": 1.02,
+        "net_return_%": 0.7,
+        "cagr_%": 0.0,
+        "max_drawdown_%": -9.4,
+        "years": 21.7
+      },
+      "GBPJPY": {
+        "trades": 59,
+        "longs": 33,
+        "shorts": 26,
+        "win_rate_%": 32.2,
+        "avg_R": -0.032,
+        "profit_factor": 0.94,
+        "net_return_%": -2.4,
+        "cagr_%": -0.1,
+        "max_drawdown_%": -8.2,
+        "years": 21.7
+      }
+    }
+  }
+}

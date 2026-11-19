@@ -7,8 +7,6 @@
   "5": "Bot de soporte/resistencia horizontal (flip y retest)",
   "6": "CLAUDE.md",
   "7": ".claude/CLAUDE.md",
-  "8": "sr_strategy.py",
-  "9": "Prompt para el agente de trading (MT5)",
-  "10": "pandas",
-  "11": "find_signal"
+  "8": "run_trend_backtest.py",
+  "9": "Prompt para el agente de trading (MT5)"
 }

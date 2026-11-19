@@ -116,7 +116,14 @@ def find_signal(i: int, o, h, l, c, a, level: float, z: float, P: Params) -> int
     return 0
 
 
-def backtest(df: pd.DataFrame, P: Params, start_equity: float = 10_000.0):
+def backtest(df: pd.DataFrame, P: Params, start_equity: float = 10_000.0,
+             levels_at=None, side_ok=None):
+    """Simulate the strategy on df.
+
+    levels_at(i, atr_i) -> (levels, z): optional level source for bar i (e.g. levels
+        from a higher timeframe); default uses this timeframe's pivots.
+    side_ok(i) -> set of allowed sides {1, -1}: optional trend filter.
+    """
     df = df.reset_index()
     t = df["time"].values
     o, h, l, c = (df[x].values for x in ("open", "high", "low", "close"))
@@ -161,22 +168,28 @@ def backtest(df: pd.DataFrame, P: Params, start_equity: float = 10_000.0):
         if pos is not None or np.isnan(a[i]):
             continue
 
-        # --- pivots confirmed by bar i (pivot bar <= i - k), inside the lookback
-        lo = i - P.lookback
-        idx = np.arange(max(lo, 0), i - k + 1)
-        piv_prices = np.concatenate([h[idx][ph[idx]], l[idx][pl[idx]]])
-        z = P.zone_atr * a[i]
-        levels = build_levels(piv_prices, 2 * z, P.min_touches)
+        allowed = side_ok(i) if side_ok is not None else (1, -1)
+        if not allowed:
+            continue
+        if levels_at is not None:
+            levels, z = levels_at(i, a[i])
+        else:
+            # pivots confirmed by bar i (pivot bar <= i - k), inside the lookback
+            lo = i - P.lookback
+            idx = np.arange(max(lo, 0), i - k + 1)
+            piv_prices = np.concatenate([h[idx][ph[idx]], l[idx][pl[idx]]])
+            z = P.zone_atr * a[i]
+            levels = build_levels(piv_prices, 2 * z, P.min_touches)
         if not levels:
             continue
 
-        # closest valid level to price that produces a signal
+        # closest level to price that produces an allowed signal
         best = None
         for lv, touches in sorted(levels, key=lambda x: abs(x[0] - c[i])):
             if abs(lv - c[i]) > 3 * z:
                 break
             s = find_signal(i, o, h, l, c, a, lv, z, P)
-            if s:
+            if s and s in allowed:
                 best = (s, lv)
                 break
         if best is None:
