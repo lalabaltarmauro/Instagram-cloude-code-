@@ -52,3 +52,7 @@ Gancho en los primeros 3 s con la cifra o la frase más fuerte. Cierre fijo: "¿
 ## Resumen final de cada corrida (lo que lee el dueño)
 
 Lista corta: los 4 videos con día, título y gancho; qué se descartó y por qué; cualquier dato que no se pudo confirmar y requiere ojo humano.
+
+## Paso 6 — Producción del video (automática, gratis)
+
+Por cada guion: escribir `produccion/specs/video-NN-tema.json` y renderizar con `python produccion/build_video.py <spec>` (ver `produccion/README.md`). Solo imágenes reales NASA/ESA con `nasa_id` verificado; voz `es-ES-AlvaroNeural`; ≤ 58 s. Los .mp4 quedan en `produccion/salida/` y **no se publican solos**: el dueño los aprueba antes. Publicación automática solo si el dueño lo confirma por chat y la cuenta `@fisicacosmica` está conectada.
