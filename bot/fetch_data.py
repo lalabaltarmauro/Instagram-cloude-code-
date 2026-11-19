@@ -1,60 +1,45 @@
 """Download OHLC data into data/*.csv (columns: time, open, high, low, close).
 
-BTCUSDT 4h comes from Binance's public market-data mirror (no API key).
-EURUSD and gold 1h come from Yahoo Finance (about 2 years max) and are resampled to 4h.
+Forex only, from Yahoo Finance:
+  *_4h: 1h bars (about 2 years max on Yahoo) resampled to 4h.
+  *_1d: daily bars since 2004.
 """
 from __future__ import annotations
 
 import sys
-import time
 from pathlib import Path
 
 import pandas as pd
-import requests
 
 DATA = Path(__file__).resolve().parent.parent / "data"
 
 
-def binance(symbol: str, interval: str = "4h", start: str = "2017-09-01") -> pd.DataFrame:
-    url = "https://data-api.binance.vision/api/v3/klines"
-    start_ms = int(pd.Timestamp(start, tz="UTC").timestamp() * 1000)
-    rows = []
-    while True:
-        r = requests.get(url, params={"symbol": symbol, "interval": interval,
-                                      "startTime": start_ms, "limit": 1000}, timeout=30)
-        r.raise_for_status()
-        batch = r.json()
-        if not batch:
-            break
-        rows += batch
-        start_ms = batch[-1][0] + 1
-        if len(batch) < 1000:
-            break
-        time.sleep(0.2)
-    df = pd.DataFrame(rows).iloc[:, :5]
-    df.columns = ["time", "open", "high", "low", "close"]
-    df["time"] = pd.to_datetime(df["time"], unit="ms", utc=True)
-    return df.astype({c: float for c in ["open", "high", "low", "close"]})
+PAIRS = ["EURUSD", "GBPUSD", "USDJPY", "AUDUSD", "USDCAD", "USDCHF", "NZDUSD", "EURJPY", "GBPJPY"]
 
 
-def yahoo_4h(ticker: str) -> pd.DataFrame:
+def yahoo(ticker: str, tf: str) -> pd.DataFrame:
     import yfinance as yf
-    d = yf.download(ticker, interval="1h", period="730d", progress=False, auto_adjust=False)
+    if tf == "4h":
+        d = yf.download(ticker, interval="1h", period="730d", progress=False, auto_adjust=False)
+    else:
+        d = yf.download(ticker, interval="1d", start="2004-01-01", progress=False, auto_adjust=False)
     if isinstance(d.columns, pd.MultiIndex):
         d.columns = d.columns.get_level_values(0)
     d = d.rename(columns=str.lower)[["open", "high", "low", "close"]]
-    d.index = d.index.tz_convert("UTC")
-    d = d.resample("4h").agg({"open": "first", "high": "max", "low": "min", "close": "last"}).dropna()
-    return d.reset_index().rename(columns={d.index.name or "index": "time"})
+    d.index = pd.to_datetime(d.index, utc=True)
+    if tf == "4h":
+        d = d.resample("4h").agg({"open": "first", "high": "max", "low": "min", "close": "last"})
+    d = d.dropna()
+    # Yahoo forex has some broken bars (high == low or high < close); drop them
+    d = d[(d["high"] > d["low"]) & (d["high"] >= d[["open", "close"]].max(axis=1))
+          & (d["low"] <= d[["open", "close"]].min(axis=1))]
+    d.index.name = "time"
+    return d.reset_index()
 
 
 def main() -> None:
     DATA.mkdir(exist_ok=True)
-    jobs = {
-        "BTCUSDT_4h": lambda: binance("BTCUSDT"),
-        "EURUSD_4h": lambda: yahoo_4h("EURUSD=X"),
-        "XAUUSD_4h": lambda: yahoo_4h("GC=F"),   # gold futures as a proxy for XAUUSD spot
-    }
+    jobs = {f"{p}_{tf}": (lambda p=p, tf=tf: yahoo(f"{p}=X", tf)) for p in PAIRS for tf in ("4h", "1d")}
     for name, fn in jobs.items():
         if len(sys.argv) > 1 and name not in sys.argv[1:]:
             continue

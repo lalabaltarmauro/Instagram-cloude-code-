@@ -1,22 +1,30 @@
-"""Plot bot equity vs buy & hold for each market: python bot/plot_results.py ."""
-import sys, json
-import pandas as pd, matplotlib
+"""Plot cumulative R per forex pair (H4 and D1) from results/*_trades.csv: python bot/plot_results.py"""
+import json
+from pathlib import Path
+
+import matplotlib
+import pandas as pd
+
 matplotlib.use("Agg")
-import matplotlib.pyplot as plt
-root = sys.argv[1]
-summ = json.load(open(f"{root}/results/summary.json"))
-fig, axes = plt.subplots(3, 1, figsize=(10, 10))
-for ax, name in zip(axes, ["BTCUSDT_4h", "EURUSD_4h", "XAUUSD_4h"]):
-    eq = pd.read_csv(f"{root}/results/{name}_equity.csv", index_col=0, parse_dates=True)["equity"]
-    px = pd.read_csv(f"{root}/data/{name}.csv", index_col=0, parse_dates=True)["close"]
-    px.index = pd.to_datetime(px.index, utc=True).tz_localize(None); eq.index = pd.to_datetime(eq.index, utc=True).tz_localize(None)
-    px = px[px.index >= eq.index[0]]
-    s = summ[name]
-    ax.plot(eq.index, eq.values, color="#2563eb", lw=1.4, label="Bot (1% risk/trade)")
-    ax.plot(px.index, 10000 * px / px.iloc[0], color="#9ca3af", lw=1, label="Buy & hold")
-    ax.axhline(10000, color="#111", lw=0.5, ls=":")
-    ax.set_title(f"{name}: {s['trades']} trades, win {s['win_rate_%']}%, PF {s['profit_factor']}, "
-                 f"net {s['net_return_%']}%, max DD {s['max_drawdown_%']}%", fontsize=10)
-    if name == "BTCUSDT_4h": ax.set_yscale("log")
-    ax.legend(fontsize=8, loc="upper left"); ax.grid(alpha=0.2)
-fig.tight_layout(); fig.savefig(f"{root}/results/equity.png", dpi=110)
+import matplotlib.pyplot as plt  # noqa: E402
+
+OUT = Path(__file__).resolve().parent.parent / "results"
+summary = json.loads((OUT / "summary.json").read_text())
+
+fig, axes = plt.subplots(2, 1, figsize=(11, 10))
+for ax, tf, label in zip(axes, ("4h", "1d"), ("H4", "D1")):
+    for path in sorted(OUT.glob(f"*_{tf}_trades.csv")):
+        tr = pd.read_csv(path, parse_dates=["exit_time"])
+        if tr.empty:
+            continue
+        tr = tr.sort_values("exit_time")
+        ax.plot(tr["exit_time"], tr["r_multiple"].cumsum(), lw=1.2, label=path.stem.split("_")[0])
+    p = summary["pooled"][tf]["all"]
+    ax.axhline(0, color="#111", lw=0.6, ls=":")
+    ax.set_title(f"{label} — all pairs: {p['trades']} trades, win {p['win_rate_%']}%, "
+                 f"avg {p['avg_R']}R, PF {p['profit_factor']}, total {p['total_R']}R", fontsize=10)
+    ax.set_ylabel("Cumulative R (1R = 1% risk)")
+    ax.legend(fontsize=8, ncol=5, loc="upper left")
+    ax.grid(alpha=0.2)
+fig.tight_layout()
+fig.savefig(OUT / "equity.png", dpi=110)

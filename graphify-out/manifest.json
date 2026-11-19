@@ -6,21 +6,21 @@
     "semantic_hash": ""
   },
   "bot/fetch_data.py": {
-    "mtime": 1795105238.0804954,
-    "seen": 1795105422.356713,
-    "ast_hash": "77fcd2eef3be8862a10e5c956289148a",
+    "mtime": 1795105500.8758292,
+    "seen": 1795105614.6279612,
+    "ast_hash": "43d10ff8f58027623a931625445cb905",
     "semantic_hash": ""
   },
   "bot/plot_results.py": {
-    "mtime": 1795105421.0641286,
-    "seen": 1795105422.3567157,
-    "ast_hash": "0f61fcdf997df31895c9236b5980fd0b",
+    "mtime": 1795105522.8285124,
+    "seen": 1795105614.627965,
+    "ast_hash": "60ebe7363875bd7acc5884999491dc49",
     "semantic_hash": ""
   },
   "bot/run_backtest.py": {
-    "mtime": 1795105246.1724958,
-    "seen": 1795105422.3567176,
-    "ast_hash": "1c5dc12b66e364a749ad978b19f79fe6",
+    "mtime": 1795105518.116512,
+    "seen": 1795105614.627967,
+    "ast_hash": "432de7dfec69697a9427fb20336944de",
     "semantic_hash": ""
   },
   "bot/sr_strategy.py": {
@@ -30,9 +30,9 @@
     "semantic_hash": ""
   },
   "results/summary.json": {
-    "mtime": 1795105301.5549843,
-    "seen": 1795105422.3567204,
-    "ast_hash": "9cfd70c09dd7eca38498a574573f77de",
+    "mtime": 1795105580.7281725,
+    "seen": 1795105614.6279716,
+    "ast_hash": "28d51ed46f829e206317dddde56db0d5",
     "semantic_hash": ""
   },
   ".claude/CLAUDE.md": {
@@ -60,9 +60,9 @@
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1795105421.0661433,
-    "seen": 1795105422.3567255,
-    "ast_hash": "c541b96bca7b104b3bcd8d31cd056140",
+    "mtime": 1795105613.783621,
+    "seen": 1795105614.627979,
+    "ast_hash": "a17e0cc2256e03984d09e2c3b566fa15",
     "semantic_hash": ""
   },
   "requirements.txt": {
@@ -72,9 +72,15 @@
     "semantic_hash": ""
   },
   "results/equity.png": {
-    "mtime": 1795105404.4645054,
-    "seen": 1795105422.3567276,
-    "ast_hash": "68bf7b3467be608d97404c611b2c4f16",
+    "mtime": 1795105581.6965158,
+    "seen": 1795105614.6279838,
+    "ast_hash": "50b1771bf276b1786e6c997d923c2be6",
+    "semantic_hash": ""
+  },
+  "prompt_agente_trading.md": {
+    "mtime": 1795105607.6587455,
+    "seen": 1795105614.6279802,
+    "ast_hash": "1833f5fdcd6ef58186cf28ad530b78a8",
     "semantic_hash": ""
   }
 }

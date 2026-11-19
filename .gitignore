@@ -1,3 +1,4 @@
 data/
 results/*_equity.csv
 __pycache__/
+graphify-out/cache/hook_sessions/

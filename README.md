@@ -14,19 +14,29 @@ Bot basado en el video "Technical Analysis Series – Horizontal Support/Resista
 - `bot/sr_strategy.py`: la misma lógica en Python, con el backtester.
 - `bot/fetch_data.py`, `bot/run_backtest.py`, `bot/plot_results.py`: datos, backtest y gráfico.
 - `results/`: resumen (`summary.json`), operaciones (`*_trades.csv`) y `equity.png`.
+- `prompt_agente_trading.md`: prompt con el EA para que un agente lo pruebe en MT5.
 
 ## Backtest en Python
 ```bash
 pip install -r requirements.txt
 python bot/fetch_data.py
 python bot/run_backtest.py
-python bot/plot_results.py .
+python bot/plot_results.py
 ```
 
 ## Backtest en MT5
 1. Copia `mt5/SR_Flip_EA.mq5` en `MQL5/Experts/` (Archivo → Abrir carpeta de datos).
 2. Ábrelo en MetaEditor y compílalo (F7).
-3. Probador de estrategias (Ctrl+R): Experto `SR_Flip_EA`, símbolo (XAUUSD, EURUSD, BTCUSD…), periodo **H4**,
+3. Probador de estrategias (Ctrl+R): Experto `SR_Flip_EA`, símbolo (EURUSD, GBPUSD, USDJPY…), periodo **H4**,
    modelado "1 minuto OHLC" o "Cada tick basado en ticks reales", depósito 10 000.
 
 Diferencias con Python: MT5 calcula el ATR con media simple (Python usa Wilder) y entra al ask/bid con el spread real del broker.
+
+## Resultados (divisas, 9 pares: majors + EURJPY y GBPJPY; datos de Yahoo, costo ~1 pip ida y vuelta)
+
+| Temporalidad | Periodo | Operaciones | Ganadoras | Profit factor | Total |
+|---|---|---|---|---|---|
+| H4 | 2024–2026 | 1021 | 33,5 % | 0,98 | −13,9R |
+| D1 | 2004–2026 | 1042 | 32,0 % | 0,92 | −55,4R |
+
+Con objetivo 2R el punto de equilibrio es 33 % de aciertos: tal como está, la estrategia no tiene ventaja.
